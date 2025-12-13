@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive Anesthesia Machine UI with real-time monitoring and controls">
+    <title>Anesthesia Machine</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+
+
+
+        <!-- Main Grid Layout -->
+        <div class="main-grid">
+            <!-- Vital Signs Section -->
+            <section class="vitals-section">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Vital Signs</h2>
+                    </div>
+                    <div class="vitals-grid">
+                        <!-- Heart Rate -->
+                        <div class="vital-card" id="hr-card">
+                            <div class="vital-label">HR</div>
+                            <div class="vital-value" id="hr-value">75</div>
+                            <div class="vital-unit">bpm</div>
+                        </div>
+
+                        <!-- Blood Pressure -->
+                        <div class="vital-card" id="bp-card">
+                            <div class="vital-label">BP</div>
+                            <div class="vital-value" id="bp-value">120/80</div>
+                            <div class="vital-unit">mmHg</div>
+                            <div class="vital-range">MAP: <span id="map-value">93</span></div>
+                        </div>
+
+                        <!-- SpO2 -->
+                        <div class="vital-card" id="spo2-card">
+                            <div class="vital-label">SpO₂</div>
+                            <div class="vital-value" id="spo2-value">98</div>
+                            <div class="vital-unit">%</div>
+                        </div>
+
+                        <!-- CO2 -->
+                        <div class="vital-card" id="co2-card">
+                            <div class="vital-label">CO₂</div>
+                            <div class="vital-value" id="co2-value">38</div>
+                            <div class="vital-unit">mmHg</div>
+                        </div>
+
+                        <!-- Temperature -->
+                        <div class="vital-card" id="temp-card">
+                            <div class="vital-label">Temp</div>
+                            <div class="vital-value" id="temp-value">36.5</div>
+                            <div class="vital-unit">°C</div>
+                        </div>
+
+                        <!-- Airway Pressure -->
+                        <div class="vital-card" id="pressure-card">
+                            <div class="vital-label">Airway P</div>
+                            <div class="vital-value" id="pressure-value">15</div>
+                            <div class="vital-unit">cmH₂O</div>
+                            <div class="vital-range">Peak: <span id="peak-pressure">18</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alarms Section -->
+            <section class="alarms-section">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Alerts</h2>
+                        <button class="btn btn-warning" id="silence-alarm-btn">Silence</button>
+                    </div>
+                    <div class="alarm-list" id="alarm-list">
+                        <div class="no-alarms">All parameters normal</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Waveforms Section -->
+            <section class="waveforms-section">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Waveform</h2>
+                    </div>
+                    <div class="waveforms-grid">
+                        <!-- ECG Waveform -->
+                        <div class="waveform-card">
+                            <div class="waveform-header">
+                                <span class="waveform-label">ECG</span>
+                                <span class="waveform-value" id="ecg-rate">75 bpm</span>
+                            </div>
+                            <canvas class="waveform-canvas" id="ecg-canvas"></canvas>
+                        </div>
+
+                        <!-- co2 -->
+                        <div class="waveform-card">
+                            <div class="waveform-header">
+                                <span class="waveform-label">CO₂</span>
+                                <span class="waveform-value" id="capno-value">38 mmHg</span>
+                            </div>
+                            <canvas class="waveform-canvas" id="capno-canvas"></canvas>
+                        </div>
+
+                        <!-- SpO2  -->
+                        <div class="waveform-card">
+                            <div class="waveform-header">
+                                <span class="waveform-label">SpO₂</span>
+                                <span class="waveform-value" id="pleth-value">98%</span>
+                            </div>
+                            <canvas class="waveform-canvas" id="pleth-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Controls Section -->
+            <section class="controls-section">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Ventilator Controls</h2>
+                    </div>
+                    <div class="controls-grid">
+                        <!-- Ventilator Settings -->
+                        <div class="control-group">
+                            <h3 class="control-group-title">Ventilation</h3>
+
+                            <div class="control-item">
+                                <div class="control-label">
+                                    <span>Tidal Volume</span>
+                                    <span class="control-value" id="tv-display">500 mL</span>
+                                </div>
+                                <input type="range" class="slider" id="tv-slider" min="300" max="700" step="50"
+                                    value="500">
+                            </div>
+
+                            <div class="control-item">
+                                <div class="control-label">
+                                    <span>Respiratory Rate</span>
+                                    <span class="control-value" id="rate-display">12 bpm</span>
+                                </div>
+                                <input type="range" class="slider" id="rate-slider" min="8" max="20" step="1"
+                                    value="12">
+                            </div>
+
+                            <div class="control-item">
+                                <div class="control-label">
+                                    <span>PEEP</span>
+                                    <span class="control-value" id="peep-display">5 cmH₂O</span>
+                                </div>
+                                <input type="range" class="slider" id="peep-slider" min="0" max="15" step="1" value="5">
+                            </div>
+                        </div>
+
+                        <!-- Oxygenation -->
+                        <div class="control-group">
+                            <h3 class="control-group-title">Oxygenation</h3>
+
+                            <div class="control-item">
+                                <div class="control-label">
+                                    <span>FiO₂</span>
+                                    <span class="control-value" id="fio2-display">40%</span>
+                                </div>
+                                <input type="range" class="slider" id="fio2-slider" min="21" max="100" step="1"
+                                    value="40">
+                            </div>
+
+                            <div class="control-item">
+                                <div class="control-label">
+                                    <span>Fresh Gas Flow</span>
+                                    <span class="control-value" id="fgf-display">2.0 L/min</span>
+                                </div>
+                                <input type="range" class="slider" id="fgf-slider" min="0.5" max="6" step="0.5"
+                                    value="2">
+                            </div>
+                        </div>
+
+                        <!-- Anesthesia -->
+                        <div class="control-group">
+                            <h3 class="control-group-title">Anesthesia</h3>
+
+                            <div class="control-item">
+                                <div class="control-label">
+                                    <span>Sevoflurane</span>
+                                    <span class="control-value" id="agent-display">2.0%</span>
+                                </div>
+                                <input type="range" class="slider" id="agent-slider" min="0" max="5" step="0.1"
+                                    value="2">
+                                <div class="control-hint">MAC: <span id="mac-value">1.0</span></div>
+                            </div>
+
+                            <div class="control-item">
+                                <div class="control-label">
+                                    <span>Inspired/Expired</span>
+                                </div>
+                                <div class="control-hint">
+                                    Insp: <span id="inspired-agent">0.5</span>% |
+                                    Exp: <span id="expired-agent">1.8</span>%
+                                </div>
+                            </div>
+
+                            <div class="control-item">
+                                <div class="control-label">
+                                    <span>I:E Ratio</span>
+                                    <span class="control-value" id="ie-ratio">1:2.0</span>
+                                </div>
+                            </div>
+
+                            <div class="btn-group" style="margin-top: 1.5rem;">
+                                <button class="btn btn-primary" id="reset-btn">Clear Alerts</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
