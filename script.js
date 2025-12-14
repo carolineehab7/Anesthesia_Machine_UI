@@ -29,8 +29,8 @@ const state = {
 
 // Alarm Thresholds
 const alarmLimits = {
-  heartRate: { low: 50, high: 100, critical: { low: 40, high: 130 } },
-  systolic: { low: 90, high: 140, critical: { low: 70, high: 180 } },
+  heartRate: { low: 50, high: 120, critical: { low: 40, high: 130 } },
+  systolic: { low: 80, high: 160, critical: { low: 70, high: 180 } },
   spo2: { low: 94, critical: { low: 90 } },
   co2: { low: 30, high: 45, critical: { low: 25, high: 55 } },
   temperature: { low: 36.0, high: 37.5, critical: { low: 35.0, high: 38.5 } },
@@ -781,3 +781,4 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
+
