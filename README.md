@@ -85,7 +85,7 @@ The simulator models  physiological relationships:
 <img width="2506" height="1177" alt="image" src="https://github.com/user-attachments/assets/c63b5110-5e10-46d5-8034-b32c41b845dc" />
 <img width="2476" height="643" alt="image" src="https://github.com/user-attachments/assets/e75dc174-f515-4808-8fe6-bf2719664c2a" />
 
-Alarms
+### Alarms
 <img width="2492" height="706" alt="image" src="https://github.com/user-attachments/assets/a0344c58-6764-41bd-b23e-d11300e7208e" />
 
 
